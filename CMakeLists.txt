@@ -167,6 +167,7 @@ catkin_install_python(PROGRAMS
   scripts/InputSimulator.py
   scripts/ThrusterPower.py
   scripts/Thrusters.py
+  scripts/Joystick.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

@@ -5,3 +5,13 @@ Thrusters:
   CG: [0, 0, 0]
   step_multiplier: 5
   rate: 1
+
+# ProfileA:
+  activate: A
+  max_percentage: 100
+  formula_modifier: 30
+
+# ProfileB:
+  activate: B
+  max_percentage: 70
+  formula_modifier: 50
