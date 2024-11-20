@@ -1,27 +1,43 @@
 <launch>
-    <!-- Load parameters first -->
-    <!--<node name="config_loader" pkg="inserr_ros" type="ConfigLoader.py" />-->
+    <!--Include a launch file to load config yaml files-->
+    <include file="$(find inserr_ros)/launch/config_load.launch"/>
 
-    <!-- Run after all parameters are loaded -->
-    <!--<rosparam command="load" file="$(find inserr_ros)/config/nodes.yaml"/>
-    <rosparam command="load" file="$(find inserr_ros)/config/thrusters.yaml"/>-->
-    <include file="launch/config_load.launch"/>
-    <node name="input_simulator" pkg="inserr_ros" type="InputSimulator.py"/>
+
+    <!--<node name="input_simulator" pkg="inserr_ros" type="InputSimulator.py"/>-->
+    <node name="joystick_input" pkg="inserr_ros" type="Joystick.py" />
+
     <node name="thruster_power" pkg="inserr_ros" type="ThrusterPower.py">
-        <!--<param name="~rate" type="int" value="1" />-->
-        <!--<param name="ThrusterPower_rate" value="$(arg ThrusterPower_rate)"/>-->
+        <param name="rate" type="int" value="60" />
     </node>
-    <node name="thrusters" pkg="inserr_ros" type="Thrusters.py"/>
-    <node name="ProfileA" pkg="inserr_ros" type="ControlProfile.py">
+
+    <node name="thrusters" pkg="inserr_ros" type="Thrusters.py">
+        <param name="CG" type="yaml" value="[0, 0, 0]" />
+        <param name="step_multiplier" type="int" value="5" />
+        <param name="rate" type="int" value="10" />
+    </node>
+
+    <node name="profileA" pkg="inserr_ros" type="ControlProfile.py">
         <param name="activate" type="string" value="A" />
         <param name="max_percentage" type="int" value="100" />
         <param name="formula_modifier" type="int" value="30" />
     </node>
-    <node name="ProfileB" pkg="inserr_ros" type="ControlProfile.py">
+
+    <node name="profileB" pkg="inserr_ros" type="ControlProfile.py">
         <param name="activate" type="string" value="B" />
         <param name="max_percentage" type="int" value="70" />
-        <param name="formula_modifier" type="int" value="30" />
+        <param name="formula_modifier" type="int" value="50" />
     </node>
-    <!--<node name="ProfileA" pkg="inserr_ros" type="ControlProfile.py" />
-    <node name="ProfileB" pkg="inserr_ros" type="ControlProfile.py" />-->
+
+    <node name="profileC" pkg="inserr_ros" type="ControlProfile.py">
+        <param name="activate" type="string" value="C" />
+        <param name="max_percentage" type="int" value="50" />
+        <param name="formula_modifier" type="int" value="50" />
+    </node>
+
+    <node name="profileD" pkg="inserr_ros" type="ControlProfile.py">
+        <param name="activate" type="string" value="D" />
+        <param name="max_percentage" type="int" value="30" />
+        <param name="formula_modifier" type="int" value="50" />
+    </node>
+    
 </launch>

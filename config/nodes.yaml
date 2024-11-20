@@ -1,17 +1,25 @@
-ThrusterPower:
-  rate: 1
+# Can define nodes here as well
+# However I am still deciding on fully using yaml or
+# defining nodes in launch file, only complex structures
+# in config yaml files
+# Right now will use hybrid approach of .yaml+.launch
+# and see how this goes
+# honestly speaking yaml looks much cleaner...
 
-Thrusters:
-  CG: [0, 0, 0]
-  step_multiplier: 5
-  rate: 1
+# ThrusterPower:
+#  rate: 1
+
+# Thrusters:
+#  CG: [0, 0, 0]
+#  step_multiplier: 5
+#  rate: 1
 
 # ProfileA:
-  activate: A
-  max_percentage: 100
-  formula_modifier: 30
+#  activate: A
+#  max_percentage: 100
+#  formula_modifier: 30
 
 # ProfileB:
-  activate: B
-  max_percentage: 70
-  formula_modifier: 50
+#  activate: B
+#  max_percentage: 70
+#  formula_modifier: 50

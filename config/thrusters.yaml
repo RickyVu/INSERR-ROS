@@ -1,4 +1,4 @@
-thrusters:
+thrusters_config:
   - Name: ThrusterFL
     Address: 0x13
     Invert: False

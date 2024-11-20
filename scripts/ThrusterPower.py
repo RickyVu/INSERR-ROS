@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''
 Subcribe Topics:
 
@@ -25,7 +25,7 @@ DEFAULT_CG = [0, 0, 0]
 class ThrusterPower:
     def __init__ (self):
         self.CG = np.array(rospy.get_param('~CG', DEFAULT_CG))
-        self.Thrusters = rospy.get_param('thrusters', [])
+        self.Thrusters = rospy.get_param('thrusters_config', [])
         
         self.pub_thruster = pubsub.json_message.Publisher('inserr/thruster/power', queue_size=10)
         pubsub.json_message.Subscriber('inserr/control/movement', self.command_movement)

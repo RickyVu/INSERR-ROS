@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''
 Subscribe Topics:
 
@@ -23,7 +23,7 @@ import numpy as np
 
 class Thrusters:
     def __init__ (self, step_multiplier, rate):
-        self.Thrusters = rospy.get_param('thrusters', [])
+        self.Thrusters = rospy.get_param('thrusters_config', [])
         print(self.Thrusters)
 
         self.thruster_addresses = list(map(lambda x: x["Address"], self.Thrusters))
