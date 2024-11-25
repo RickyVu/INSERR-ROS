@@ -51,11 +51,19 @@ if __name__ == '__main__':
         rospy.init_node('ControlProfile', anonymous=True)
         #param_dir = sys.argv[1]
         node_name = rospy.get_name()
-        max_percentage_param = rospy.get_param(f'{node_name}/max_percentage', 100)
-        formula_modifier_param = rospy.get_param(f'{node_name}/formula_modifier', 30)
-        activate_param = rospy.get_param(f'{node_name}/activate', "A")
+        #max_percentage_param = rospy.get_param(f'{node_name}/max_percentage', 100)
+        #formula_modifier_param = rospy.get_param(f'{node_name}/formula_modifier', 30)
+        #activate_param = rospy.get_param(f'{node_name}/activate', "A")
+
+        max_percentage_param = rospy.get_param('~max_percentage', 100.0)
+        formula_modifier_param = rospy.get_param('~formula_modifier', 30)
+        activate_param = rospy.get_param('~activate', "A")
         ControlProfile(max_percentage_param, formula_modifier_param, activate_param)
 
-        rospy.spin()
+        rate = rospy.Rate(10)
+
+        #rospy.spin()
+        while not rospy.is_shutdown():
+            rate.sleep()
     except rospy.ROSInterruptException:
         pass

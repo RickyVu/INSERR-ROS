@@ -227,14 +227,15 @@ class Joystick:
         # PUB LOOP
         if self.new_movement_message != self.movement_message:
             self.movement_message = self.new_movement_message[:]
-            self.pub_movement({"gamepad_movement": self.movement_message})
+            self.pub_movement.publish({"gamepad_movement": self.movement_message})
+            self.pub_profile.publish({"gamepad_profile": ProfileChars[self.thumb_profile_cycle]})
 
         if button_pressed(self.l_stick_input):
             self.thumb_profile_cycle = (self.thumb_profile_cycle-1)%len(ProfileChars)
-            self.pub_profile({"gamepad_profile": ProfileChars[self.thumb_profile_cycle]})
+            self.pub_profile.publish({"gamepad_profile": ProfileChars[self.thumb_profile_cycle]})
         if button_pressed(self.r_stick_input):
             self.thumb_profile_cycle = (self.thumb_profile_cycle+1)%len(ProfileChars)
-            self.pub_profile({"gamepad_profile": ProfileChars[self.thumb_profile_cycle]})
+            self.pub_profile.publish({"gamepad_profile": ProfileChars[self.thumb_profile_cycle]})
 
         #if button_pressed(self.x_input):
         #    self.control_invert = not self.control_invert
